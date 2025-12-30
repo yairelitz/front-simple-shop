@@ -1,0 +1,220 @@
+:root{
+  --bg:#f5f7fb;
+  --card-bg:#ffffff;
+  --muted:#6b7280;
+  --accent:#0ea5a4;
+  --shadow: 0 6px 18px rgba(16,24,40,0.08);
+  --radius:10px;
+  --gap:20px;
+  --max-width:1100px;
+}
+
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:#111827;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  padding:28px;
+  display:flex;
+  justify-content:center;
+}
+
+/* Grid for products */
+.product-grid{
+  width:100%;
+  max-width:var(--max-width);
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:var(--gap);
+  align-items:stretch;
+  margin:0 auto;
+}
+
+/* Card */
+.card{
+  background:var(--card-bg);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  transition:transform .18s ease, box-shadow .18s ease;
+  cursor: pointer;
+}
+.card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 14px 30px rgba(16,24,40,0.12);
+}
+
+.card-image{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* body */
+.card-body{
+  padding:14px 16px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  flex:1;
+}
+
+.card-title{
+  margin:0;
+  font-size:1rem;
+  line-height:1.2;
+  color:#111827;
+  font-weight:600;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.card-price{
+  margin:0;
+  margin-top:auto;
+  font-size:0.95rem;
+  color:var(--accent);
+  font-weight:700;
+}
+
+/* small meta text if needed */
+.card-meta{
+  font-size:0.85rem;
+  color:var(--muted);
+}
+
+/* responsive tweaks */
+@media (max-width:480px){
+  .card-image{height:140px}
+  body{padding:16px}
+}
+.navbar {
+  display: flex;              /* מסדר את האלמנטים בשורה */
+  justify-content: space-between; /* פיזור שווה בין האלמנטים */
+  align-items: center;        /* מרכז את האלמנטים אנכית */
+  padding: 10px 20px;         /* מרווח פנימי */
+  background-color: #1e90ff;
+  color: white;               /* צבע הטקסט */
+  border-radius: 8px;         /* פינות מעוגלות */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* צל עדין */
+  font-family: Arial, sans-serif;
+}
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
+}
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+
+.cart-page {
+  width: 100%;
+  max-width: var(--max-width);
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin: 0 auto;
+}
+
+.cart-page h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+}
+
+.cart-page button {
+  padding: 10px 16px;
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  align-self: flex-start;
+}
+
+.cart-page button:hover {
+  background-color: #059e9a;
+}
+
+.cart-empty {
+  font-size: 1rem;
+  color: var(--muted);
+  text-align: center;
+  padding: 20px 0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eee;
+  border-radius: var(--radius);
+  background-color: #f9fafb;
+}
+
+.cart-item h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.cart-item p {
+  margin: 0;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* רספונסיביות למובייל */
+@media (max-width: 480px) {
+  .cart-page {
+    padding: 16px;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .cart-page button {
+    width: 100%;
+    text-align: center;
+  }
+}
+.container-cart {
+  display: flex;
+
+}
+.productInCart{
+  border: 2px solid #111827;
+  margin: 6px;
+  padding: 9px;
+
+}
+.clearAllBtn {
+  width: 70px;
+  height: 30px;
+  margin: 9px;
+
+}
+

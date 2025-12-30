@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Iphone","description": "Iphone 17 pro max 245GB", "price": 3500, "image":"https://mobile-phone-eilat.co.il/wp-content/uploads/2025/09/17pro.jpg"},
+  { "id": 2, "name": "Headphones","description": "JBL flip 6 12h", "price": 399, "image":"https://www.alm.co.il/media/catalog/product/1/_/1_17_1.jpg?auto=webp&format=pjpg&width=640&height=800&fit=cover"},
+  { "id": 3, "name": "Computer","description": "HP Versto 2025 OLed ","price": 12999, "image":"https://cdn.bug.co.il/images/site/products//e0c52441-0362-47ec-83fe-0ac6d78781ac.png"},
+  { "id": 4, "name": "Keyboard","description":"Gamers key board with lights", "price": 175, "image":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVaBjbYm63fy8FD0rV_4Fp4xay1kZ0_48BZg&s"}
+]
