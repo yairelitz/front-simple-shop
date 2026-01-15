@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { register } from "../services/auth.service";
+import { toast } from "react-toastify";
+import Header from "../components/Header";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -17,9 +19,12 @@ export default function Register() {
     setLoading(true);
 
     try {
-      const data = await register({ name, email, password });
-      localStorage.setItem("token", data.token);
-      navigate("/dashboard");
+      const res = await register({ name, email, password });
+      localStorage.setItem("token", res.data.token);
+
+      toast.success("התחברת בהצלחה");
+
+      navigate("/");
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         if (err.response?.status === 409) {
@@ -37,6 +42,8 @@ export default function Register() {
   };
 
   return (
+    <>
+    <Header/>
     <div>
       <h2>הרשמה</h2>
 
@@ -73,5 +80,6 @@ export default function Register() {
         כבר יש לך חשבון? <Link to="/login">התחברות</Link>
       </p>
     </div>
+    </>
   );
 }

@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { login } from "../services/auth.service";
 import axios from "axios";
+import { toast } from "react-toastify";
+import Header from "../components/Header";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -15,26 +17,38 @@ export default function Login() {
     setError("");
     setLoading(true);
 
-    try {
-      const data = await login({ email, password });
-      localStorage.setItem("token", data.token);
-      navigate("/dashboard");
-    } catch (err: unknown) {
-      if (axios.isAxiosError(err)) {
-        if (err.response?.status === 401) {
-          setError("אימייל או סיסמה שגויים");
-        } else {
-          setError("שגיאת שרת");
-        }
-      } else {
-        setError("שגיאה לא צפויה");
-      }
-    } finally {
-      setLoading(false);
+  try {
+  const res = await login({ email, password });
+
+  localStorage.setItem("token", res.data.token);
+  console.log("The token isss : ",res.data.token);
+  console.log("TOKEN:", localStorage.getItem("token"));
+
+  // console.log("TOKEN:", localStorage.getItem("token"));
+  // console.log("fucking token : ",data.token)
+  // console.log("LOGIN RAW DATA:", data.data.token);
+  
+  toast.success("התחברת בהצלחה");
+  navigate("/");
+} catch (err: unknown) {
+  if (axios.isAxiosError(err)) {
+    if (err.response?.status === 401) {
+      setError("אימייל או סיסמה שגויים");
+    } else {
+      setError("שגיאת שרת");
     }
+  } else {
+    setError("שגיאה לא צפויה");
+  }
+} finally {
+  setLoading(false);
+
   };
+}
 
   return (
+    <>
+    <Header/>
     <div>
       <h2>התחברות</h2>
 
@@ -64,5 +78,6 @@ export default function Login() {
         אין לך חשבון? <Link to="/register">הרשמה</Link>
       </p>
     </div>
+    </>
   );
 }

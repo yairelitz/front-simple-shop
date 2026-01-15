@@ -10,10 +10,29 @@ export type RegisterData = {
 };
 
 export type AuthResponse = {
-  token: string;
-  user: {
-    id: number;
-    name: string;
-    email: string;
+  success: boolean;
+  data: {
+    token: string;
+    user: {
+      _id: string;
+      email: string;
+      name: string;
+    };
   };
 };
+export type AddToCartPayload = {
+  productId: string;
+  quantity: number;
+};
+export type RemoveFrom = {
+  productId: string;
+}
+
+export type ClearCart = {
+  productId: string;
+}
+
+
+
+
+

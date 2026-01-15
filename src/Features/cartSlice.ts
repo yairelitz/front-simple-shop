@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { Product } from "../types";
+import type { Product } from "../types/types";
 type cartItems = Product;
 
 type ProductState = {
@@ -19,7 +19,7 @@ const productSlice = createSlice({
       state.items.push(action.payload);
     },
     removeOneFromCart: (state, action: PayloadAction<number>) => {
-  const index = state.items.findIndex(item => item.id === action.payload);
+  const index = state.items.findIndex(item => item._id === action.payload);
   if (index >= 0) {
     state.items.splice(index, 1);
   }

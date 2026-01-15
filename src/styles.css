@@ -1,3 +1,4 @@
+
 :root{
   --bg:#f5f7fb;
   --card-bg:#ffffff;
@@ -19,7 +20,7 @@ body{
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   padding:28px;
-  display:flex;
+  /* display:flex; */
   justify-content:center;
 }
 
@@ -99,16 +100,19 @@ body{
 .navbar {
   display: flex;              /* מסדר את האלמנטים בשורה */
   justify-content: space-between; /* פיזור שווה בין האלמנטים */
-  align-items: center;        /* מרכז את האלמנטים אנכית */
-  padding: 10px 20px;         /* מרווח פנימי */
-  background-color: #1e90ff;
-  color: white;               /* צבע הטקסט */
-  border-radius: 8px;         /* פינות מעוגלות */
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2); /* צל עדין */
+  align-items: center;
+  padding: 20px 20px;
+  /* background-color: #1e90ff; */
+   color: white;              /* צבע הטקסט */
+  /* border-radius: 8px;  */
+  /* box-shadow: 0 2px 5px rgba(0,0,0,0.2); */
   font-family: Arial, sans-serif;
+  border-bottom:1px solid black;
+  margin-bottom: 9px;
+  padding-bottom: 20px;
 }
 .navbar a {
-  color: white;
+  color:black;
   text-decoration: none;
   margin: 0 10px;
   font-weight: bold;
@@ -217,4 +221,29 @@ body{
   margin: 9px;
 
 }
+.container {
+    display: flex;          /* הופך ל-Flexbox */
+  flex-wrap: wrap;        /* שורות חדשות אם אין מקום */
+  gap: 16px;              /* רווח בין הכרטיסים */
+  justify-content: center; /* ממרכז את הכרטיסים אופקית */
+  padding: 16px;
+}
+.cardd {
+  width: 300px;               /* רוחב קבוע */
+  border: 1px solid gainsboro; /* גבול עם צבע משתנה */
+  border-radius: 12px;        /* פינות מעוגלות */
+  padding: 12px;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* צל עדין */
+}
+  
+
+.images {
+ width: 100%;
+  height: 150px;
+  object-fit: cover; /* שומר על פרופורציות וממלא את התמונה */
+  border-radius: 8px;
+  margin-bottom: 8px;
+};
 
