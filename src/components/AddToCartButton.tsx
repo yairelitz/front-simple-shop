@@ -1,6 +1,8 @@
 import { toast } from "react-toastify";
 import { addToCart } from "../services/auth.service";
 import type { Product } from "../types/types";
+import Button from "@mui/material/Button";
+import { ShoppingCartRounded } from "@mui/icons-material";
 // import CartPage from "../pages/CartPage";
 
 type Props = {
@@ -22,7 +24,7 @@ function AddToCartButton({ product }: Props) {
     }
   };
 
-  return <button onClick={handleAddToCart}>add to cart</button>;
+  return <Button variant="contained" startIcon={<ShoppingCartRounded />}onClick={handleAddToCart}>add to cart</Button>;
 }
 
 export default AddToCartButton;

@@ -1,17 +1,24 @@
 import api from "../api/axios"; // אינסטנס של axios עם Authorization
-import type { Order, ShippingAddress, OrderResponse, OrderStatus } from "../types/orders";
+import type { CreateOrderPayload, CreateOrderResponse, Order, } from "../types/orders";
 
 /**
  * יצירת הזמנה מהעגלה
  */
-export const createOrder = async (shippingAddress: ShippingAddress, notes?: string): Promise<Order> => {
-  const res = await api.post<OrderResponse>("/api/orders", {
-    shippingAddress,
-    notes,
-  });
-  return res.data.data as Order;
+export const createOrder = async (
+  payload: CreateOrderPayload
+): Promise<CreateOrderResponse> => {
+  const res = await api.post<CreateOrderResponse>(
+    "/api/orders",
+    payload
+  );
+
+  return res.data;
 };
 
+export const fetchOrder = async (orderId: string) => {
+  const res = await api.get(`/api/orders/${orderId}`);
+  return res.data.data.order;
+};
 /**
  * קבלת כל ההזמנות של המשתמש (אפשר סינון לפי סטטוס)
  */

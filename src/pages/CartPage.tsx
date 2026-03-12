@@ -1,4 +1,6 @@
 import "../styles.css";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 // import { useDispatch, useSelector } from "react-redux";
 // import { removeOneFromCart, clearCart } from "../Features/cartSlice";
 // import { useAppSelector } from "../hooks";
@@ -11,8 +13,14 @@ import { getCart, updateCartItem } from "../services/auth.service";
 import RemoveFromCartButton from "../components/RemoveFromCartButton";
 import QuantityUpdate from "../components/QuantityUpdate";
 import ClearAllBtn from "../components/ClearAllBtn";
+import LogoutButton from "../components/LogoutButton";
 // import type { Product } from "../types";
 function CartPage() {
+  const navigate = useNavigate();
+    const handleCheckout = () => {
+    navigate("/payment");
+  };
+
   const [cart, setCart] = useState<Cart | null>(null);
 
   const increaseQty = async (productId: string, currentQty: number) => {
@@ -37,15 +45,28 @@ const handleRemoved = async () => {
   setCart(freshCart);
 };
 
-  useEffect(() => {
-    getCart().then(setCart);
-  }, []);
+useEffect(() => {
+  const fetchCart = async () => {
+    try {
+      const data = await getCart();
+      setCart(data);
+    } catch (err) {
+      console.log(err)
+      toast.error("עליך להירשם או להתחבר בכדי להיכנס לעגלה");
+      navigate("/login");
+    }
+  };
+
+  fetchCart();
+}, []);
 
   if (!cart) return <p>טוען עגלה...</p>;
+  
 
   return (
     <>
       <Header />
+      <LogoutButton />
 
       <h2>העגלה שלי</h2>
 
@@ -64,7 +85,10 @@ const handleRemoved = async () => {
           <RemoveFromCartButton product={item.product} onRemoved={handleRemoved} />
         </div>
       ))}
+      
       {cart.items.length > 0 && <ClearAllBtn onCleared={setCart}/>}
+      {cart.items.length > 0 && <button onClick={handleCheckout}>התחל תהליך תשלום</button>}
+      
 
       </div>
     </>

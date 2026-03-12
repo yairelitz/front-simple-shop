@@ -1,6 +1,10 @@
 import { toast } from "react-toastify";
 import { removeFromCart } from "../services/auth.service";
 // import type { Product } from "../types";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+
+
 
 type Props = {
   product: {
@@ -27,7 +31,7 @@ function RemoveFromCartButton({ product, onRemoved}: Props) {
   
   
 
-  return <button onClick={handleRemove}>הסר מהעגלה</button>;
+  return <Button  variant="contained" startIcon={<DeleteIcon />} onClick={handleRemove}>הסר מהעגלה</Button>;
 }
 
 export default RemoveFromCartButton;

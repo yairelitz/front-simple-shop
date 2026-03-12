@@ -38,7 +38,7 @@ export default function Card({ product }: CardProps) {
       <img src={product.image} alt={product.name} className="images"/>
       <h3>{product.name}</h3>
       <p>{product.description}</p>
-      <p>₪ {product.price}</p>
+      <h2>₪ {product.price}</h2>
       <AddToCartButton product={product} />
     </div>
   );

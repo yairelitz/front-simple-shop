@@ -17,6 +17,13 @@ export const login = async (data: LoginData): Promise<AuthResponse> => {
   return res.data;
 };
 
+export const logout = async (): Promise<AuthResponse> => {
+  const res = await api.post<AuthResponse>("/api/auth/logout");
+  console.log("res data.data : ", res.data.data);
+  return res.data;
+};
+
+
 export const register = async (data: RegisterData): Promise<AuthResponse> => {
   const res = await api.post<AuthResponse>("/api/auth/register", data);
   return res.data;

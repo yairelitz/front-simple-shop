@@ -24,7 +24,7 @@ export default function Register() {
 
       toast.success("התחברת בהצלחה");
 
-      navigate("/");
+      navigate("/cart");
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         if (err.response?.status === 409) {

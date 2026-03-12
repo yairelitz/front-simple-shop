@@ -11,6 +11,7 @@ function Header() {
       <Link to="/">חנות</Link>
       <Link to="/register">הירשמו לאתר</Link>
       <Link to="/cart">עגלה ({items.length})</Link>
+      <Link to="/admin">מנהל </Link>
     </header>
   );
 }

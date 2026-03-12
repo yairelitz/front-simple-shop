@@ -7,6 +7,7 @@ export type Product= {
       price: number,
       // category : string,
       image: string,
+      stock: number,
       // featured: boolean,
       // stock: number,
       // rating: number,

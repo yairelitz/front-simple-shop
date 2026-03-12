@@ -29,7 +29,7 @@ export default function Login() {
   // console.log("LOGIN RAW DATA:", data.data.token);
   
   toast.success("התחברת בהצלחה");
-  navigate("/");
+  navigate("/cart");
 } catch (err: unknown) {
   if (axios.isAxiosError(err)) {
     if (err.response?.status === 401) {

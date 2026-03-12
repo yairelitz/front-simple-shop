@@ -1,116 +1,54 @@
-import { useState } from "react";
-import { toast } from "react-toastify";
-import { createOrder } from "../services/orders.service";
-import type { ShippingAddress, Order } from "../types/orders";
+import { useEffect, useState } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { fetchOrder } from "../services/orders.service"; // לבדוק סטטוס order
 
-function CheckoutPage() {
-  const [address, setAddress] = useState<ShippingAddress>({
-    street: "",
-    city: "",
-    postalCode: "",
-    country: "Israel",
-  });
+export default function CheckoutPage() {
+  const [searchParams] = useSearchParams();
+  const navigate = useNavigate();
+  // const { clearCart } = useCart();
 
-  const [notes, setNotes] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("Checking payment...");
+  const [orderConfirmed, setOrderConfirmed] = useState(false);
 
-  // עדכון state לפי הקלט
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    if (name === "notes") {
-      setNotes(value);
-    } else {
-      setAddress(prev => ({ ...prev, [name]: value }));
-    }
-  };
+  const paymentStatus = searchParams.get("payment");
+  const orderId = searchParams.get("orderId");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+  useEffect(() => {
+    const checkPayment = async () => {
+      if (paymentStatus === "success" && orderId) {
+        try {
+          const order = await fetchOrder(orderId);
 
-    try {
-      const order: Order = await createOrder(address, notes);
-      toast.success("ההזמנה בוצעה בהצלחה!");
-      console.log("Order created:", order);
+          if (order.status === "confirmed") {
+            setStatusMessage("Payment successful! 🎉 Your order is confirmed.");
+            setOrderConfirmed(true);
+            // clearCart();
+          } else {
+            setStatusMessage("Payment received, waiting for confirmation...");
+          }
 
-      // כאן אפשר לרוקן את העגלה (אם רוצים)
-      // או לנווט לדף פרטי הזמנה
-    } catch (err) {
-      toast.error("שגיאה ביצירת ההזמנה");
-      console.error(err);
-    } finally {
-      setLoading(false);
-    }
-  };
+          setTimeout(() => {
+            navigate("/");
+          }, 5000);
+
+        } catch (err) {
+          console.error(err);
+          setStatusMessage("Error checking order status. Please contact support.");
+        }
+      } else if (paymentStatus === "cancel") {
+        setStatusMessage("Payment cancelled. You can try again.");
+      }
+    };
+
+    checkPayment();
+  }, [paymentStatus, orderId, navigate]);
 
   return (
-    <div className="checkout-container">
-      <h2>כתובת משלוח</h2>
-      <form onSubmit={handleSubmit} className="checkout-form">
-        <label>
-          רחוב:
-          <input
-            type="text"
-            name="street"
-            value={address.street}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
+    <div style={{ maxWidth: 600, margin: "auto", textAlign: "center", padding: 20 }}>
+      <h2>Checkout Status</h2>
+      <p>{statusMessage}</p>
 
-        <label>
-          עיר:
-          <input
-            type="text"
-            name="city"
-            value={address.city}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-
-        <label>
-          מיקוד:
-          <input
-            type="text"
-            name="postalCode"
-            value={address.postalCode}
-            onChange={handleChange}
-            required
-          />
-        </label>
-        <br />
-
-        <label>
-          מדינה:
-          <input
-            type="text"
-            name="country"
-            value={address.country}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-
-        <label>
-          הערות:
-          <textarea
-            name="notes"
-            value={notes}
-            onChange={handleChange}
-            placeholder="לדוגמה: לצלצל בפעמון"
-          />
-        </label>
-        <br />
-
-        <button type="submit" disabled={loading}>
-          {loading ? "שולח..." : "מעבר לתשלום"}
-        </button>
-      </form>
+      {orderConfirmed && <p>You will be redirected to home in 5 seconds...</p>}
     </div>
   );
 }
-
-export default CheckoutPage;

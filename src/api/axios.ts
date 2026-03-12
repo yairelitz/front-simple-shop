@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:4001",
+  // baseURL: "http://localhost:4001",
+  baseURL: "https://simple-4-anp6.onrender.com/",
 });
 
 api.interceptors.request.use((config) => {

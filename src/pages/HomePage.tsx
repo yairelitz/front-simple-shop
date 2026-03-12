@@ -4,6 +4,7 @@ import type { Product } from "../types/types.ts";
 import { useEffect, useState } from "react";
 import { getProducts } from "../services/auth.service.ts";
 import Header from "../components/Header.tsx";
+import Footer from "../components/Footer.tsx";
 // import { data } from "react-router-dom";
 // import { useSelector } from "react-redux";
 // import type { RootState } from "../store";
@@ -18,10 +19,13 @@ function HomePage() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const data = await getProducts();
+        let data = await getProducts();
+        console.log("GGG",data.filter((p) => p.stock > 0 ))
+        data = data.filter((p) => p.stock > 0)
         setProducts(data);
-        console.log(data);
-        console.log(products);
+        // console.log(data);
+        // console.log(products);
+        // console.log("GGGGG",products.filter((p) => p.name !== 'MacBook Air M3'));
       } catch (err) {
         console.error("FETCH ERROR:", err);
         setError("שגיאה בטעינת מוצרים");
@@ -49,6 +53,7 @@ function HomePage() {
           <Card key={product._id} product={product} />
         ))}
       </div>
+      <Footer />
     </>
     // <>
     //   <Header/>

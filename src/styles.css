@@ -19,7 +19,7 @@ body{
   color:#111827;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  padding:28px;
+  /* padding:28px; */
   /* display:flex; */
   justify-content:center;
 }
@@ -99,9 +99,13 @@ body{
 }
 .navbar {
   display: flex;              /* מסדר את האלמנטים בשורה */
-  justify-content: space-between; /* פיזור שווה בין האלמנטים */
+  justify-content: space-between; 
   align-items: center;
-  padding: 20px 20px;
+  /* padding: 2px; */
+  align-items:center;
+  height: 89px;
+  background-color:antiquewhite;
+  text-shadow: #059e9a;
   /* background-color: #1e90ff; */
    color: white;              /* צבע הטקסט */
   /* border-radius: 8px;  */
@@ -114,8 +118,10 @@ body{
 .navbar a {
   color:black;
   text-decoration: none;
-  margin: 0 10px;
+  margin:0px;
   font-weight: bold;
+  padding: 0px;
+  
 }
 .navbar a:hover {
   text-decoration: underline;
@@ -246,4 +252,7 @@ body{
   border-radius: 8px;
   margin-bottom: 8px;
 };
+.footer{
+  height: 89px;
+}
 

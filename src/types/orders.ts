@@ -1,36 +1,40 @@
-export type ShippingAddress = {
+export interface Address {
   street: string;
   city: string;
   postalCode: string;
-  country?: string;
-};
+  country: string;
+}
 
-export type OrderItem = {
-  productId: string;  // מזהה המוצר
-  name: string;       // שם המוצר בזמן ההזמנה (snapshot)
-  price: number;      // מחיר בזמן ההזמנה
-  quantity: number;
-  subtotal: number;   // price * quantity
-};
-export type OrderStatus =
-  | "pending"
-  | "paid"
-  | "processing"
-  | "shipped"
-  | "completed"
-  | "cancelled";
-export type Order = {
-  id: string;                  // מזהה ההזמנה
-  userId: string;              // מזהה המשתמש
-  items: OrderItem[];          // רשימת פריטים
-  total: number;               // סכום ההזמנה
-  shippingAddress: ShippingAddress;
-  status: OrderStatus;
-  notes?: string;              // הערות נוספות מהלקוח
-  createdAt: string;           // תאריך יצירה
-};
-export type OrderResponse = {
+export interface CreateOrderPayload {
+  shippingAddress: Address;
+  billingAddress: Address;
+  paymentMethod: "stripe";
+  notes?: string;
+}
+
+export interface Order {
+  _id: string;
+  orderNumber: string;
+  user: string;
+  status: "pending_payment" | "confirmed" | string;
+  paymentStatus: "pending" | "paid" | string;
+  paymentIntentId: string;
+  paymentProvider: string;
+  totalAmount: number;
+  items: any[];
+  shippingAddress: Address;
+  billingAddress: Address;
+  createdAt: string;
+}
+
+export interface CreateOrderResponse {
   success: boolean;
+  data: {
+    order: Order;
+    payment: {
+      clientSecret: string;
+      checkoutUrl: string;
+    };
+  };
   message: string;
-  data: Order | Order[];
-};
+}

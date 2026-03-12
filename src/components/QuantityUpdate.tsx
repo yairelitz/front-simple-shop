@@ -1,3 +1,4 @@
+import Button from "@mui/material/Button";
 type Props = {
   quantity: number;
   onIncrease: () => void;
@@ -7,9 +8,9 @@ type Props = {
 function QuantityUpdate({ quantity, onIncrease, onDecrease }: Props) {
   return (
     <>
-      <button onClick={onIncrease}>+</button>
+      <Button onClick={onIncrease}>+</Button>
       <span>{quantity}</span>
-      <button onClick={onDecrease}>-</button>
+      <Button onClick={onDecrease}>-</Button>
     </>
   );
 }
