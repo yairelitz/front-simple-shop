@@ -53,7 +53,7 @@ function App() {
   <div className="app">
     <ToastContainer position="top-center" autoClose={2000} />
 
-    <Router>
+    <Router basename="/front-simple-shop">
       <Header cart={cart} user={user} setUser={setUser} />
 
       <main className="app-content">
