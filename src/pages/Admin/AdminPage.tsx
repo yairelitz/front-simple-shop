@@ -1,5 +1,4 @@
-import { useState } from "react";
-// import Header from "../components/Header/Header";
+import { useSearchParams } from "react-router-dom";
 import ProductsTable from "../../components/admin/ProductsTable";
 import UsersTable from "../../components/admin/UsersTable";
 import OrdersTable from "../../components/admin/OrdersTable";
@@ -7,7 +6,13 @@ import StatsCards from "../../components/admin/StatsCards";
 import "./Admin.css";
 
 function AdminPage() {
-  const [view, setView] = useState("products");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const view = searchParams.get("view") || "products";
+
+  const setView = (newView: string) => {
+    setSearchParams({ view: newView });
+  };
 
   return (
     <div className="admin-page">

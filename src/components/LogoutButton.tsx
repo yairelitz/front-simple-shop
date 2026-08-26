@@ -19,7 +19,11 @@ const LogoutButton = ({ setUser }: LogoutProps) => {
     }
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return (
+  <button className="logout-btn" onClick={handleLogout}>
+    התנתק
+  </button>
+);
 };
 
 export default LogoutButton;

@@ -1,5 +1,5 @@
 import api from "../api/axios";
-import type { Product } from "../types/types";
+import type { Product } from "../types/product";
 import type {
   LoginData,
   RegisterData,
@@ -8,7 +8,7 @@ import type {
   RemoveFrom,
   
 } from "../types/auth";
-import type { ProductsResponse } from "../types/types";
+import type { ProductsResponse } from "../types/product";
 import type { CartResponse, Cart } from "../types/cart";
 export type User = {
   _id: string;

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom"
+import "../pages/Cart/CartPage.css"
 function HomePageBtn() {
     const navigate = useNavigate()
 
@@ -6,7 +7,7 @@ function HomePageBtn() {
         navigate("/")
     }
   return (
-    <button onClick={handleButton}>בחר מוצרים</button>
+    <button className="btn-to-home" onClick={handleButton}>בחר מוצרים</button>
   )
 }
 

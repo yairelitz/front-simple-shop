@@ -32,11 +32,7 @@ function UsersTable() {
     try {
       const updatedUser = await updateUserRole(id, newRole);
 
-      setUsers(prev =>
-        prev.map(u =>
-          u._id === id ? updatedUser : u
-        )
-      );
+      setUsers((prev) => prev.map((u) => (u._id === id ? updatedUser : u)));
     } catch (err) {
       console.error(err);
     }
@@ -46,37 +42,43 @@ function UsersTable() {
 
   return (
     <>
-      <h2>Users</h2>
-<div className="admin-table-container">
-      <table className="admin-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {users.map((user) => (
-            <tr key={user._id}>
-              <td>{user.name}</td>
-              <td>{user.email}</td>
-              <td>
-                <select className="admin-select"
-                  value={user.role}
-                  onChange={(e) =>
-                    handleRoleChange(user._id, e.target.value)
-                  }
-                >
-                  <option value="user">User</option>
-                  <option value="admin">Admin</option>
-                </select>
-              </td>
+      {/* <h2>משתמשים</h2> */}
+      <div className="admin-table-container">
+        <table className="admin-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+
+          <tbody>
+            {users.map((user) => (
+              <tr key={user._id}>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>
+                  <div className="role-switch">
+                    <button
+                      className={user.role === "user" ? "active" : ""}
+                      onClick={() => handleRoleChange(user._id, "user")}
+                    >
+                      User
+                    </button>
+
+                    <button
+                      className={user.role === "admin" ? "active" : ""}
+                      onClick={() => handleRoleChange(user._id, "admin")}
+                    >
+                      Admin
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );

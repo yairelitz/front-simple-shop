@@ -1,5 +1,5 @@
 import type { Cart } from "../types/cart.ts";
-import type { Product } from "../types/types.ts";
+import type { Product } from "../types/product.ts";
 import AddToCartButton from "./AddToCartButton.tsx";
 type Props = {
   product: Product;
@@ -8,7 +8,7 @@ type Props = {
 export default function Card({ product, setCart }: Props) {
   return (
     <div className="card">
-      <img src={product.image} alt={product.name} className="images" />
+      <img className="images" src={product.image} alt={product.name}/>
       <div className="card-content">
       <h3>{product.name}</h3>
       <p>{product.description}</p>

@@ -21,7 +21,7 @@ type Props = {
 function RemoveFromCartButton({ product, onRemoved}: Props) {
   const handleRemove = async () => {
     try {
-      await removeFromCart({ productId: product._id.toString() });
+      await removeFromCart({ productId: product._id});
       toast.success("המוצר הוסר מהעגלה");
     } catch {
       toast.error("שגיאה בהסרת מוצר");
@@ -31,7 +31,15 @@ function RemoveFromCartButton({ product, onRemoved}: Props) {
   
   
 
-  return <Button id="deleteBtn"  variant="contained" startIcon={<DeleteIcon />} onClick={handleRemove}>הסר מהעגלה</Button>;
+  return (
+  <Button
+    className="cart-delete-btn"
+    onClick={handleRemove}
+    aria-label={`הסר את ${product.name} מהעגלה`}
+  >
+    <DeleteIcon />
+  </Button>
+);
 }
 
 export default RemoveFromCartButton;

@@ -31,15 +31,11 @@ export default function Login({ setUser }: LoginProps) {
   const currentUser = await verifyUser();
   setUser(currentUser);
 
-  console.log("The token isss : ",res.data.token);
+  console.log("The token is : ",res.data.token);
   console.log("TOKEN:", localStorage.getItem("token"));
-
-  // console.log("TOKEN:", localStorage.getItem("token"));
-  // console.log("fucking token : ",data.token)
-  // console.log("LOGIN RAW DATA:", data.data.token);
   
   toast.success("התחברת בהצלחה");
-  navigate("/cart");
+  navigate("/");
 } catch (err: unknown) {
   if (axios.isAxiosError(err)) {
     if (err.response?.status === 401) {

@@ -1,18 +1,34 @@
 .admin-page {
-  padding: 30px;
+  padding: 40px;
 }
 
 /* כותרת */
 .admin-title {
+  text-align: right;
+  margin-top: 1px;
   margin-bottom: 20px;
+  margin-left: 20px;
+
+  
   font-size: 1.8rem;
 }
 
 /* ניווט */
 .admin-nav {
   display: flex;
-  gap: 12px;
+  gap: 32px;
   margin-bottom: 20px;
+  justify-content: right;
+
+  position: sticky;
+  top: 75px;
+  z-index: 900;
+  /* box-shadow: black; */
+
+  background: var(--card-bg);
+  padding: 12px 0;
+  border-radius: 15px;
+  padding-right: 20px;
 }
 
 /* כפתורים */
@@ -24,6 +40,7 @@
   cursor: pointer;
   font-weight: 600;
   transition: 0.2s;
+  font-size: 18px;
 }
 
 .admin-nav button:hover {
@@ -32,7 +49,7 @@
 
 /* כפתור פעיל */
 .admin-nav button.active {
-  background: #0ea5a4;
+  background: #1e3a5f;
   color: white;
 }
 
@@ -42,6 +59,7 @@
   padding: 20px;
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+
 }
 .admin-table {
   width: 100%;
@@ -52,6 +70,7 @@
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  
 }
 .admin-table thead {
   display: table-header-group;
@@ -59,8 +78,10 @@
 
 /* כותרת */
 .admin-table thead {
-  background: #0ea5a4;
+  background:#1e3a5f;
   color: white;
+  
+  
 }
 .admin-content {
   padding: 20px;
@@ -70,19 +91,20 @@
 }
 
 .admin-table th {
-  padding: 14px;
+    padding: 14px 70px;
+
   text-align: left;
   font-size: 0.9rem;
    background: transparent;
 }
 .admin-table thead tr {
-  background: #0ea5a4;
+  background: #1e3a5f;
   color: white;
 }
 
 /* שורות */
 .admin-table td {
-  padding: 12px 14px;
+  padding: 14px 70px;
   border-bottom: 1px solid #f1f1f1;
 }
 
@@ -93,7 +115,7 @@
 
 /* hover */
 .admin-table tbody tr:hover {
-  background: #f0fdfa;
+  background: #f0f2fd;
   transition: 0.2s;
 }
 
@@ -119,21 +141,68 @@
 
 /* add */
 .admin-btn-add {
-  background: #0ea5a4;
+  background:#1e3a5f;
   color: white;
   margin-bottom: 12px;
+  /* justify-content: ; */
+  display: block;
+  margin-left: auto;
+  /* text-align: right; */
 }
 
 .admin-btn-add:hover {
-  background: #0b8c87;
+  background: #1e3a5f;
 }
 
 /* select */
-.admin-select {
-  padding: 6px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
+.role-switch {
+  display: inline-flex;
+
+  background: #f1f5f9;
+
+  border: 1px solid #dbe2ea;
+  border-radius: 10px;
+
+  padding: 3px;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
+
+.role-switch button {
+  border: none;
+  background: transparent;
+
+  color: #64748b;
+
+  padding: 7px 14px;
+
+  min-width: 65px;
+
+  border-radius: 7px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.role-switch button:hover {
+  color: #1e3a5f;
+}
+
+.role-switch button.active {
+  background: #1e3a5f;
+  color: white;
+
+  box-shadow: 0 2px 5px rgba(30, 58, 95, 0.2);
+}
+
+.role-switch button.active:hover {
+  background: #274b73;
+}
+
 /* ===== סטטיסטיקות ===== */
 
 .admin-stats {
@@ -160,7 +229,7 @@
   border-radius: 14px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
   transition: 0.2s;
-  border-left: 5px solid #0ea5a4;
+  border-left: 5px solid #1e3a5f;
 }
 
 /* hover */
@@ -240,7 +309,7 @@
 
 /* focus */
 .add-product-form input:focus {
-  border-color: #0ea5a4;
+  border-color: #1e3a5f;
   background: white;
   box-shadow: 0 0 0 4px rgba(14,165,164,0.12);
 }
@@ -256,7 +325,7 @@
   padding: 12px;
   border: none;
   border-radius: 12px;
-  background: #0ea5a4;
+  background: #1e3a5f;
   color: white;
   font-size: 1rem;
   font-weight: 700;
@@ -266,11 +335,74 @@
 
 /* hover */
 .add-product-submit:hover {
-  background: #0b8c87;
+  background: #1e3a5f;
   transform: translateY(-1px);
 }
 
 /* active */
 .add-product-submit:active {
   transform: scale(0.98);
+}
+
+/* ===== Order Date ===== */
+
+.order-date {
+  white-space: nowrap;
+  /* text-align: left; */
+}
+
+.order-date-main {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.order-date-time {
+  display: block;
+  margin-top: 3px;
+  font-size: 12px;
+  color: var(--muted);
+}
+/* ----- */
+
+
+.product-image-preview {
+  width: 180px;
+  height: 180px;
+
+  margin-top: 10px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  background: #f9fafb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-image-preview img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+}
+.add-product-row input[type="file"] {
+  padding: 10px;
+
+  border: 1px dashed #cbd5e1;
+  border-radius: 10px;
+
+  background: #f8fafc;
+
+  cursor: pointer;
+}
+
+.add-product-row input[type="file"]:hover {
+  border-color: var(--primary);
+  background: #f1f5f9;
 }

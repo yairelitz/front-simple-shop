@@ -23,7 +23,7 @@ export default function GoogleConnectBtn({ setUser }: Props) {
       }
 
       localStorage.setItem("token", data.data.token);
-      localStorage.setItem("refreshToken", data.data.refreshToken);
+      // localStorage.setItem("refreshToken", data.data.refreshToken);
 
       setUser(data.data.user);
 

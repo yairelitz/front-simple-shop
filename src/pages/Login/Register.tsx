@@ -28,7 +28,7 @@ export default function Register({ setUser }: RegisterProps) {
 
       toast.success("התחברת בהצלחה");
 
-      navigate("/cart");
+      navigate("/");
     } catch (err: unknown) {
       if (axios.isAxiosError(err)) {
         if (err.response?.status === 409) {

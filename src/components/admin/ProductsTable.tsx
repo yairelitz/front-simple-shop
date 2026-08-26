@@ -53,7 +53,7 @@ function ProductsTable() {
 
   return (
     <div>
-      <h2>Products</h2>
+      {/* <h2>מוצרים</h2> */}
 
       <button
         className="admin-btn admin-btn-add"
@@ -70,7 +70,7 @@ function ProductsTable() {
             <tr>
               <th>שם המוצר</th>
               <th>מחיר</th>
-              <th>כמות</th>
+              <th>כמות במלאי</th>
               <th>סטטוס</th>
               <th></th> {/* עמודת כפתור */}
             </tr>
@@ -80,7 +80,7 @@ function ProductsTable() {
             {products.map((product) => (
               <tr key={product._id}>
                 <td>{product.name}</td>
-                <td>{product.price}</td>
+                <td> ₪ {product.price}</td>
                 <td>{product.stock}</td>
                 <td>
                   {product.isActive ? "פעיל" : "לא פעיל"}

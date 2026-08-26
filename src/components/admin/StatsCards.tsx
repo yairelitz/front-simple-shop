@@ -35,16 +35,16 @@ function StatsCards() {
 
 return (
   <div className="admin-stats">
-    <h2 className="admin-stats-title">סיכום</h2>
+    {/* <h2 className="admin-stats-title">סיכום</h2> */}
 
     <div className="stats-container">
       <div className="stat-card">
-        <h3>משתמשים</h3>
+        <h3>כמות משתמשים</h3>
         <p>{stats.stats.users.total}</p>
       </div>
 
       <div className="stat-card">
-        <h3>הזמנות</h3>
+        <h3>מספר הזמנות</h3>
         <p>{stats.stats.orders.open}</p>
       </div>
 
