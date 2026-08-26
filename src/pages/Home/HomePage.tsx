@@ -21,17 +21,13 @@ function HomePage({ setCart }: HomePageProps) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        let data = await getProducts();
-
-        data = data.filter((p) => p.stock > 0);
-
+        const data = await getProducts();
         setProducts(data);
       } catch (err) {
         console.error("FETCH ERROR:", err);
         setError("שגיאה בטעינת מוצרים");
       }
     };
-
     fetchProducts();
   }, []);
 

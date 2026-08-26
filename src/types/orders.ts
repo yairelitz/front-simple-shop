@@ -38,3 +38,11 @@ export interface CreateOrderResponse {
   };
   message: string;
 }
+
+export type OrderStatus = string;
+
+export interface OrderResponse {
+  success: boolean;
+  data: Order | Order[];
+  message?: string;
+}

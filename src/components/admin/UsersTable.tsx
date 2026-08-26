@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { getAdminUsers, updateUserRole } from "../../services/admin.service";
-import type { User } from "../../services/auth.service";
 
 export interface User {
   _id: string;

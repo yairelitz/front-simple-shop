@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
 import { getAdminOrders } from "../../services/admin.service";
-// types/order.ts
-export interface Order {
-  _id: string;
-  customerName: string;
-  total: number;
-  status: string;
-  createdAt: string;
-  user: string;
-}
+import type { Order as OrderData } from "../../types/orders";
+
+type AdminOrder = Omit<OrderData, "user"> & {
+  user: string | { name?: string };
+};
+
 function OrdersTable() {
-  const [orders, setOrders] = useState<Order[]>([]);
+  const [orders, setOrders] = useState<AdminOrder[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -50,7 +47,7 @@ function OrdersTable() {
           <tbody>
             {orders.map((order) => (
               <tr key={order._id}>
-                <td>{order.user.name}</td>
+                <td>{typeof order.user === "string" ? order.user : order.user.name || "-"}</td>
                 <td>₪ {order.totalAmount}</td>
                 <td>{order.status}</td>
                 <td className="order-date">

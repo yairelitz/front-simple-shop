@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
-import { deleteProduct, getAdminProducts } from "../../services/admin.service";
+import { deleteProduct, getAdminProducts, updateProduct } from "../../services/admin.service";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 type Product = {
   _id: string;
   name: string;
+  description?: string;
   price: number;
   stock: number;
+  category?: string;
+  image?: string;
+  featured?: boolean;
   isActive: boolean;
 };
 
@@ -35,7 +39,6 @@ function ProductsTable() {
   const handleDelete = async (id: string) => {
     try {
       const deletedProduct = await deleteProduct(id);
-
       setProducts(prev =>
         prev.map(p =>
           p._id === id ? deletedProduct : p
@@ -46,6 +49,21 @@ function ProductsTable() {
     } catch (err) {
       console.error(err);
       toast.error("Failed to delete product.");
+    }
+  };
+
+  const handleRestore = async (product: Product) => {
+    try {
+      const { _id, ...productData } = product;
+      await updateProduct(_id, { ...productData, isActive: true });
+
+      setProducts((prev) =>
+        prev.map((item) => item._id === _id ? { ...item, isActive: true } : item)
+      );
+      toast.success(`Product "${product.name}" restored successfully.`);
+    } catch (err) {
+      console.error(err);
+      toast.error("Failed to restore product.");
     }
   };
 
@@ -72,7 +90,7 @@ function ProductsTable() {
               <th>מחיר</th>
               <th>כמות במלאי</th>
               <th>סטטוס</th>
-              <th></th> {/* עמודת כפתור */}
+              <th>מחיקה רכה</th>
             </tr>
           </thead>
 
@@ -87,12 +105,19 @@ function ProductsTable() {
                 </td>
 
                 <td>
-                  {product.isActive && (
+                  {product.isActive ? (
                     <button
                       className="admin-btn admin-btn-delete"
                       onClick={() => handleDelete(product._id)}
                     >
-                      Delete
+                     מחיקה
+                    </button>
+                  ) : (
+                    <button
+                      className="admin-btn admin-btn-restore"
+                      onClick={() => handleRestore(product)}
+                    >
+                      שחזור מוצר
                     </button>
                   )}
                 </td>

@@ -1,5 +1,5 @@
 import api from "../api/axios"; // אינסטנס של axios עם Authorization
-import type { CreateOrderPayload, CreateOrderResponse, Order, } from "../types/orders";
+import type { CreateOrderPayload, CreateOrderResponse, Order, OrderResponse, OrderStatus } from "../types/orders";
 
 /**
  * יצירת הזמנה מהעגלה

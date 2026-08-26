@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { createOrder } from "../../services/orders.service";
+import type { CreateOrderPayload } from "../../types/orders";
 import "./PaymentPage.css"
 
 interface Address {
@@ -62,7 +63,7 @@ export default function PaymentPage() {
 
     try {
 
-      const orderData = {
+      const orderData: CreateOrderPayload = {
         shippingAddress,
         billingAddress: sameAsShipping ? { ...shippingAddress } : billingAddress,
         paymentMethod: "stripe",

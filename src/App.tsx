@@ -17,6 +17,7 @@ import type { Cart } from "./types/cart";
 import Footer from "./components/Footer/Footer";
 import ProductsTable from "./components/admin/ProductsTable";
 import AddProduct from "./components/admin/AddProduct";
+import ProductPage from "./pages/Product/ProductPage";
 
 function App() {
   const [cart, setCart] = useState<Cart | null>(null);
@@ -37,26 +38,29 @@ function App() {
   useEffect(() => {
     const fetchCart = async () => {
       try {
-        const data = await getCart();
-        setCart(data);
+        if (user){
+          const data = await getCart();
+          setCart(data);
+        }
       } catch {
         // User not logged in — cart stays null
       }
     };
     fetchCart();
-  }, []);
+  }, [user]);
 
   return (
   <div className="app">
-    <ToastContainer position="top-center" autoClose={1900} />
+    <ToastContainer position="top-center" autoClose={2000} />
 
     <Router>
       <Header cart={cart} user={user} setUser={setUser} />
 
       <main className="app-content">
         <Routes>
-          <Route path="/cart" element={<CartPage cart={cart} setCart={setCart} setUser={setUser} />} />
           <Route path="/" element={<HomePage setCart={setCart} />} />
+          <Route path="/cart" element={<CartPage cart={cart} setCart={setCart}/>} />
+          <Route path="/products/:productId" element={<ProductPage setCart={setCart} />} />
           <Route path="/register" element={<Register setUser={setUser} />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
           <Route path="/payment" element={<PaymentPage />} />

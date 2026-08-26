@@ -14,7 +14,7 @@ export default function GoogleConnectBtn({ setUser }: Props) {
   const googleBtnRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
 
-  const handleGoogleLogin = async (response: any) => {
+  const handleGoogleLogin = async (response: GoogleCredentialResponse) => {
     try {
       const data = await googleLogin(response.credential);
 

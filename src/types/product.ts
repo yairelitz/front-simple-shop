@@ -6,6 +6,7 @@ export type Product= {
       category : string,
       image: string,
       stock: number,
+      rating?: number,
 
 };
 export type ProductsResponse = {

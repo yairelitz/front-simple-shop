@@ -77,6 +77,15 @@
   line-height: 1.6;
   margin: 0 0 18px;
   flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.card .star-rating {
+  margin: -2px 0 10px;
 }
 
 /* PRICE */
@@ -142,4 +151,21 @@
   .images {
     height: 220px;
   }
+}
+
+.card-product-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.details-link {
+  color: var(--accent);
+  font-weight: 700;
+  margin-top: 14px;
+  text-decoration: none;
+}
+
+.details-link:hover,
+.card h3 .card-product-link:hover {
+  text-decoration: underline;
 }

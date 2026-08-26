@@ -27,6 +27,7 @@ function AddToCartButton({ product, setCart }: Props) {
 
   return (
     <Button
+      className="add-to-cart-btn"
       variant="contained"
       startIcon={<ShoppingCartRounded />}
       onClick={handleAddToCart}

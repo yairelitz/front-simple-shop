@@ -1,7 +1,7 @@
 import { Link, useSearchParams, useLocation } from "react-router-dom";
 import "./Header.css";
 import type { Cart } from "../../types/cart";
-import type { User } from "../admin/UsersTable";
+import type { User } from "../../services/auth.service";
 import LogoutButton from "../LogoutButton";
 
 type NavbarProps = {
